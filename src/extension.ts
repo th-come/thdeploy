@@ -9,6 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider('nodeDependencies', nodeDependenciesProvider);
 	vscode.commands.registerCommand('nodeDependencies.refreshEntry', () => nodeDependenciesProvider.refresh());
 	vscode.commands.registerCommand('nodeDependencies.uploadEntry', uploadEntry);
+	vscode.commands.registerCommand('nodeDependencies.deleteEntry', () => vscode.window.showInformationMessage('暂不支持删除'))
 }
 
 // 销毁周期
