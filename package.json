@@ -103,6 +103,7 @@
 		"node-ssh": "^11.1.1",
 		"ora": "^5.1.0"
 	},
+	"license": "UNLICENSED",
 	"bugs": {
 		"url": "https://github.com/th-come/thdeploy.git/issues"
 	},
