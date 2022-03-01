@@ -188,7 +188,7 @@ export class Deploy {
 	removeLocalZip = () => {
 		const { config } = this;
 		const localPath = `${this.workspaceRoot}/${config.distPath}`;
-		log(`7. 删除本地打包压缩文件: ${underline(localPath)}`);
+		log(`9. 删除本地打包压缩文件: ${underline(localPath)}.zip`);
 		fs.unlinkSync(`${localPath}.zip`);
 	};
 	// 删除打包下文件
