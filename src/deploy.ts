@@ -6,7 +6,7 @@ import { DeployConfigItem } from "./nodeDependencies";
 import { oConsole } from "./utils";
 import * as vscode from 'vscode';
 
-const { log, error, succeed, info, underline, } = oConsole;
+const { log, error, underline } = oConsole;
 
 
 export class Deploy {
@@ -182,20 +182,14 @@ export class Deploy {
 	delZipFile = () => {
 		const { remotePath, distPath } = this.config;
 		const remoteFile = `${remotePath}/${distPath}.zip`;
+		log(`7. 删除远程解压包`);
 		return this.ssh.execCommand(`rm -rf ${remoteFile}`);
 	}
-	// 删除本地打包文件
-	removeLocalZip = () => {
-		const { config } = this;
-		const localPath = `${this.workspaceRoot}/${config.distPath}`;
-		log(`9. 删除本地打包压缩文件: ${underline(localPath)}.zip`);
-		fs.unlinkSync(`${localPath}.zip`);
-	};
 	// 删除打包下文件
 	removeLocalFile = () => {
 		const { config } = this;
 		const localPath = `${this.workspaceRoot}/${config.distPath}`;
-		log(`8. 删除本地打包目录文件: ${underline(localPath)}`);
+		log(`删除本地打包目录文件: ${underline(localPath)}`);
 		const remove = (path: string) => {
 			if (fs.existsSync(path)) {
 				fs.readdirSync(path).forEach((file: any) => {
@@ -215,5 +209,12 @@ export class Deploy {
 	disconnectSSH = () => {
 		log(`8. 断开服务器`);
 		this.ssh.dispose();
+	};
+	// 删除本地打包文件
+	removeLocalZip = () => {
+		const { config } = this;
+		const localPath = `${this.workspaceRoot}/${config.distPath}`;
+		log(`9. 删除本地打包压缩文件: ${underline(localPath)}.zip`);
+		fs.unlinkSync(`${localPath}.zip`);
 	};
 }
