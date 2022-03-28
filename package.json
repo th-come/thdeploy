@@ -4,7 +4,7 @@
 	"description": "ssh deploy",
 	"publisher": "thgq",
 	"icon": "media/thdeploy.png",
-	"version": "1.0.4",
+	"version": "1.0.6",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
@@ -47,10 +47,6 @@
 					"command": "nodeDependencies.uploadEntry",
 					"when": "view == nodeDependencies && viewItem == dependency",
 					"group": "inline"
-				},
-				{
-					"command": "nodeDependencies.deleteEntry",
-					"when": "view == nodeDependencies && viewItem == dependency"
 				}
 			]
 		},
@@ -103,7 +99,7 @@
 		"node-ssh": "^11.1.1",
 		"ora": "^5.1.0"
 	},
-	"license": "UNLICENSED",
+	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/th-come/thdeploy.git/issues"
 	},
