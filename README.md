@@ -16,6 +16,7 @@ const config = {
     remotePath: '/root/www/admin', // 服务器目录
     build: 'yarn test', // 构建命令
     distPath: 'dist', // 打包输出目录
+	remove: false // 是否删除远程文件, 默认false
   }
 };
 

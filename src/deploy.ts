@@ -34,6 +34,7 @@ export class Deploy {
 		];
 		this.start();
 	}
+
 	start = async () => {
 		log("--------开始执行-------");
 		const { host } = this.config;
@@ -71,6 +72,7 @@ export class Deploy {
 		});
 
 	};
+
 	checkConfig = () => {
 		const { host, username, remotePath, distPath } = this.config;
 		console.log(`检测配置...`, this.config);
@@ -87,6 +89,7 @@ export class Deploy {
 			throw new Error("请配置本地需要上传的目录[distPath]");
 		}
 	};
+
 	// 1. 执行打包脚本
 	execBuild = () => {
 		const { config } = this;
@@ -109,6 +112,7 @@ export class Deploy {
 			);
 		});
 	};
+
 	// 2. 压缩文件夹
 	buildZip = () => {
 		const { config } = this;
@@ -137,6 +141,7 @@ export class Deploy {
 			archive.finalize();
 		});
 	};
+
 	// 3. 连接服务器
 	connectSSH = () => {
 		const { config } = this;
@@ -149,13 +154,20 @@ export class Deploy {
 			});
 		});
 	};
+
 	// 删除远程文件
 	removeRemoteFile = () => {
 		const { config } = this;
-		const { remotePath } = config;
-		log(`4. 删除远程文件 ${underline(remotePath)}`);
-		return this.ssh.execCommand(`rm -rf ${remotePath}`);
+		if (config.remove) {
+			const { remotePath } = config;
+			log(`4. 删除远程文件 ${underline(remotePath)}`);
+			return this.ssh.execCommand(`rm -rf ${remotePath}`);
+		} else {
+			log('4. 不删除远程文件')
+			return true
+		}
 	};
+
 	// 上传本地文件
 	uploadLocalFile = () => {
 		const { config } = this;

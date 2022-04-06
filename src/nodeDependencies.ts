@@ -82,7 +82,7 @@ const toArray = (obj: { [x: string]: any }): { name: string, config: any }[] => 
 	for (const key in obj) {
 		if (Object.prototype.hasOwnProperty.call(obj, key)) {
 			const element = obj[key];
-			arr.push({ name: key, config: Object.assign({ distPath: "dist", remove: true }, element) });
+			arr.push({ name: key, config: Object.assign({ distPath: "dist", remove: false }, element) });
 		}
 	}
 	return arr;
